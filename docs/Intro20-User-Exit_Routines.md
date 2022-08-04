@@ -12,9 +12,9 @@ This page provides you with more information about GenevaERS User Exits.  It wil
 - Debug views using exits  
 
 In this page, we examine the following Logic Table Functions:
-- REEX - Read a new Event Record with a user exit
+- REEX - Read a new source Record with a user exit
 - LUEX - Lookup calling a user exit
-- WREX - Write calling a user exit
+- WR* with user-exit - All Write functions calling a user-exit
 
  [Prior Logic Table Functions Codes can be located here.](Intro11a_Logic_Table_Function_Codes.md)
 
@@ -66,7 +66,7 @@ User exits, which can also be thought of as API points, are custom programs to p
 
 As noted, GenevaERS has four major points which can invoke a user exit, read, lookup, write and format exits.  The first three are Extract Phase exits, and are used much more frequently than the fourth Format Phase exit.  They are:
 
-- Read Exits stand between the actual input event file and the GenevaERS views.  These exits can modify input records to be presented to GenevaERS threads for processing. 
+- Read Exits stand between the actual input source file and the GenevaERS views.  These exits can modify input records to be presented to GenevaERS threads for processing. 
 - Lookup Exits stand between GenevaERS views and the look-up data loaded into memory.  Lookup exits accept lookup parameters and return looked up records in response to individual lookups. These exits can also be used as simple function calls which do not actually perform any lookup.  For example, the exponential calculation discussed above could be written as a lookup exit.
 - Write Exits stand between GenevaERS and the extract files.  They receive extract records and can manipulate them before being written to extract files.  
 - Format Exits, the only GVBMR88 exit, accepts summarized and formatted Format Phase output records prior to being written to files. Format exits are very similar to write exits, except that the record used is the final output record, rather than the extract record.  
@@ -92,7 +92,7 @@ Read exits are typically the most complex to write, because they must perform so
 
 Lookup exits sit between the extract engine, and a potential lookup file. The GenevaERS views are only aware of the virtual lookup record returned by the lookup exit. A sample application could be doing direct reads to a database table to retrieve a reference value for processing.  However, most often lookup exits do not actually load any data from disk; rather they simply use input parameters passed to them by the views to do some function. Thus the exit is basically a simple function call.  
 
-Look-up exits are the easiest type of exit to create. The parameters passed to the lookup exit are the values placed in the fields of the lookup key. These can be constants, fields from the event file, or fields from another lookup, including calls to other exits. The output from the lookup exit is a record that must match the LR for the “reference file” record it is to return.  Although it appears to a GenevaERS developer as if GenevaERS has taken the keys and performed a search of a reference table to find the appropriate record, the exit may have done no such thing.  In fact, it could do something as simple as reordering the fields passed to it and returning the record.
+Look-up exits are the easiest type of exit to create. The parameters passed to the lookup exit are the values placed in the fields of the lookup key. These can be constants, fields from the source file, or fields from another lookup, including calls to other exits. The output from the lookup exit is a record that must match the LR for the “reference file” record it is to return.  Although it appears to a GenevaERS developer as if GenevaERS has taken the keys and performed a search of a reference table to find the appropriate record, the exit may have done no such thing.  In fact, it could do something as simple as reordering the fields passed to it and returning the record.
 
 Lookup Exits are assigned to a target lookup LR.  When used, the typical LUSM functions are changed to LUEX functions. The exit is called each time the LUEX function is executed.
 
@@ -100,7 +100,7 @@ Lookup Exits are assigned to a target lookup LR.  When used, the typical LUSM fu
 
 ## Write Exit Functionality
 
-Write exits sit between the extract engine, and a potential extract or output file. Each write exit is tightly coupled to it’s GenevaERS view, because the exit receives the view output. Extract exits are called whenever a view is to write an extract record. In addition to the view’s extract record the write exit has access to the current source record. 
+Write exits sit between the extract engine, and a potential extract or output file. Each write exit is tightly coupled to it’s GenevaERS view, because the exit receives the view output. Extract exits are called whenever a view is ready to write an extract record. In addition to the view’s extract record the write exit has access to the current source record. 
 
 Write exits are defined in the WRITE statement within a view.
 
@@ -117,6 +117,8 @@ Some examples of write exits include the following:
   
 Write exits are in between read and lookup exits for complexity. Write exits must know what the extract record will look like for a particular view. A LR representing the output of a view can be generated using the Workbench.
 
+The write functions WRDT, WRXT, WRIN, WRSU do not change when a user exit is specified.
+
 <div style="clear: right" >
 
 ## Format Exit Functionality
@@ -132,7 +134,7 @@ Format exits are very much like write exits, except that they are called at the 
 Exits require a definition that can be added using the User Exit-Routine screens within the Workbench. The name can be anything desired. The type can be either Read, Lookup, Write, or Format. The language must be defined. The executable must match the load page name stored within an accessible loadlib for either GVBMR95 or GVBMR88. 
 The Optimizable flag is only applicable for lookup exits. Remember that GenevaERS bypasses certain lookups when the lookup has already been performed. In these cases, the look-up exit would not be called in the subsequent cases. If the lookup exit is stateless, in other words, it does not function differently from one execution to another given the same input parameters, the exit can be optimized. If the exit retains its state from one call to another, then it must be called each time and cannot be optimized.
 
-For example, one exit was written to detect the first time it was called for a particular event file record. In this case, it would return a return code of 0; every subsequent call would return a code of 1. This exit cannot be optimized; each potential call must actually call the exit.  Otherwise the exit would always return a code of 0.
+For example, one exit was written to detect the first time it was called for a particular source file record. In this case, it would return a return code of 0; every subsequent call would return a code of 1. This exit cannot be optimized; each potential call must actually call the exit.  Otherwise the exit would always return a code of 0.
 
 <div style="clear: right" >
 
@@ -233,7 +235,7 @@ This is the same view but a new trace.  In this trace the “Optimize” flag wa
 
 <img style="float: right;" width="50%" vspace="5" alt="Optimized vs Non-Optimized" src=images/Module20-User-Exit_Routines/Module20_Slide25.jpeg title="Optimized vs Non-Optimized"/>
 
-The difference between the logic tables for optimized and non-optimized is very clear. The Optimized trace on the right saves significant CPU time, including the overhead for linking to the user exit multiple times on each event file record.  Exits require CPU time by their nature, and the efficiency of the language run-time can also have an impact.  Efficiency should carefully be considered when creating any exit.
+The difference between the logic tables for optimized and non-optimized is very clear. The Optimized trace on the right saves significant CPU time, including the overhead for linking to the user exit multiple times on each source file record.  Exits require CPU time by their nature, and the efficiency of the language run-time can also have an impact.  Efficiency should carefully be considered when creating any exit.
 
 <div style="clear: right" >
 
@@ -262,8 +264,9 @@ As noted earlier there is potential for a Sort Utility Input or Read Exit.  Gene
 <img style="float: right;" width="50%" vspace="5" alt="Function Overview" src=images/Module20-User-Exit_Routines/Module20_Slide29.jpeg title="Function Overview"/>
 
 This page has introduced the following Logic Table Function Code:
-- REEX - Read a new Event Record with a user exit
+- REEX - Read a new Source Record with a user exit
 - LUEX - Lookup calling a user exit
+- WR* with user exit - All Write functions calling a user exit
 
 [Click here to access the list of the most common Logic Table Functions for reference.](Intro11a_Logic_Table_Function_Codes.md)
 
