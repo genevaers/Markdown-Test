@@ -197,7 +197,7 @@ Read Exits may set the value of X95PARM2-MAX-BLOCK-SIZE in the Open Phase and pa
 
 ### X95PARM3-STARTUP-DATA
 
-Startup data values can be set for Read, Lookup and Write exits. There is no fixed layout of X95PARM3-Startup-Data. The maximum length allowed is 32 bytes.
+The layout of X95PARM3-Startup-Data is defined by the GenevaERS configuration for the specific processes involved.  So the structure of the record layout is dependent upon the record layouts (LRs) the GenevaERS configuration.  The startup data values are constant throughout event file record processing.
 
 These parameters can be used to generalize an exit to be used for more GenevaERS processes, for example telling the exit to perform a set of functions when called in this context throughout this GenevaERS processing.  For example, a single lookup exit might do multiple mathematical functions, and the function to be performed each time it is called for a specific lookup logical record could be specified as a start-up parameter. 
 

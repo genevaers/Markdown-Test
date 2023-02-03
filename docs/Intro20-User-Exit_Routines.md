@@ -253,6 +253,20 @@ Exits must be written following the GenevaERS User Exit guidelines. These specif
 
 More details about how to create a user exit can be found in the [User Exit Programming Guide](UserExitGuide.md)
 
+- Environment data, including the Phase Code, Open, Read, or Close, informing the exit what the status of processing is.  Exits are called during the 
+    - Open phase, to prepare for processing, 
+    - Read phase as event file records are processed, and 
+    - Close phase, to print out control reports, flush final records, or clean up.
+
+- Return codes values, informing GenevaERS of the results of processing.  These can include:
+    - A Found, Not Found, or Skip Event Record condition on a Look-up Exit, 
+    - An End of File on for a Read exit, or 
+    - Write the standard extract record, Write a different record and then return to the exit for processing, or Skip the extract record and continue processing for Write Exits
+
+All Exits may signal view or process level errors as well.
+
+More details about how to create a user exit can be found in the [User Exit Programming Guide](UserExitGuide.md)
+
 <div style="clear: right" >
 
 ## GenevaERS Standard Sort Exit
