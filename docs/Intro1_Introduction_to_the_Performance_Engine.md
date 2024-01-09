@@ -140,12 +140,4 @@ The primary GenevaERS program in the Extract phase is GVBMR88. MR88 reads the MR
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)
+#

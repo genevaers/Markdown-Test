@@ -192,12 +192,3 @@ It also shows a breakdown of the records written for each view to their individu
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

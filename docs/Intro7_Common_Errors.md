@@ -253,12 +253,3 @@ In Summary, then when debugging:
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

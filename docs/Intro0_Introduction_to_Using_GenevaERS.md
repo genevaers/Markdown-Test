@@ -227,12 +227,3 @@ The view title bar now displays the word "Active". Save the view again to preser
 
 
 <div style="clear: right" >
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

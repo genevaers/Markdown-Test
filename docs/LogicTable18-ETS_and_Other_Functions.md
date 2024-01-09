@@ -340,12 +340,3 @@ Other less common logic table functions were also introduced:
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

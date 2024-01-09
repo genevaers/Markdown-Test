@@ -353,12 +353,3 @@ Creating a Token may generate one or more of the following logic table functions
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

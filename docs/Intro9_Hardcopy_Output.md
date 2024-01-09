@@ -349,12 +349,4 @@ Sort titles are the only type of lookup performed in the Format phase. The data 
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)
+#

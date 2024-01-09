@@ -197,13 +197,3 @@ In this example, the syntax is missing a second right parenthesis after the cons
 
 
 <div style="clear: right" > 
-
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

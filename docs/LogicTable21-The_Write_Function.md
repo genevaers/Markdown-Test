@@ -298,12 +298,3 @@ Note that the sequence number is 001, meaning all these write verbs are containe
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

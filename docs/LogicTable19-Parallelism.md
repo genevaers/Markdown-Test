@@ -308,13 +308,3 @@ The following give more details about each of these runs for comparison
 <img style="float: right;" width="50%" vspace="5" alt="Extract Performance Statistics without Parallelism" src=images/Module19-Parallelism/Module19_Slide28.jpeg title="Extract Performance Statistics without Parallelism"/>
 
 <div style="clear: right" > 
-
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)
