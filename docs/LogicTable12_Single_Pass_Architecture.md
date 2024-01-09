@@ -372,13 +372,3 @@ This logic table and module has introduced the following Logic Table Function Co
 [Click here to access the list of the most common Logic Table Functions for reference.](Intro11a_Logic_Table_Function_Codes.md)
 
 <div style="clear: right" > 
-
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

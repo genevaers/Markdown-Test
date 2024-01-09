@@ -227,12 +227,3 @@ After you enter the field definitions, you click the Associated Logical Files ta
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)

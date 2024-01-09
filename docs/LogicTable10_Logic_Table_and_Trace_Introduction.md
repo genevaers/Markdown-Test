@@ -312,12 +312,3 @@ The function provided by this view is very simple. However, because GenevaERS ge
 
 <div style="clear: right" > 
 
-# Links
-
-Place following text in the topic:  
-    ````
-    [Topic A](TopicA)
-    ````
-
-The link displays as:   
-[Topic A](TopicA)
